@@ -18,6 +18,10 @@ require('./Register/RegisterModel/registerModel')
 require('./SignIn/signInModel/signInModel')
 app.use(express.json())
 
+app.get('/', (req, res) => {
+  res.status(200).send("Welcome to LC Cart Server...")
+})
+
 app.use(require('./Register/register'))
 app.use(require('./SignIn/signIn'))
 app.use(require('./Order/order'))
