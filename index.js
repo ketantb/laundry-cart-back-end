@@ -18,9 +18,17 @@ require('./Register/RegisterModel/registerModel')
 require('./SignIn/signInModel/signInModel')
 app.use(express.json())
 
-app.get('/', (req, res) => {
-  res.status(200).send("Welcome to LC Cart Server...")
-})
+app.get("/", async (req, res) => {
+  try{
+  res.json({
+    status: 200,
+    message: "Welcome to LC Cart Server..."
+  });
+} catch(err) {
+    console.log(err);
+    return res.status(500).send("Server error")
+  }
+});
 
 app.use(require('./Register/register'))
 app.use(require('./SignIn/signIn'))
