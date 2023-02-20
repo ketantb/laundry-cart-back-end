@@ -54,7 +54,6 @@ const orderSchema =new mongoose.Schema(
       drycleaning: { type: Boolean, defalut: 0 },
       chemicalcleaning: { type: Boolean, defalut: 0 },
     },
-
     totalquantity: { type: String, required: true },
 
     orderdate: {
@@ -64,10 +63,10 @@ const orderSchema =new mongoose.Schema(
     subtotalcost: { type: String, required: true },
     totalcost: { type: String, required: true },
 
-    user: {
-      type: Schema.Types.ObjectId,
-      ref: "REGISTER",
-    },
+    user: { type: String, default: 0 }
+    
+    ,
+    USER: { type: String, default: 0 },
     storelocation: {
       type: String,
       required: true,
@@ -79,48 +78,3 @@ const orderSchema =new mongoose.Schema(
 );
 const ORDER= mongoose.model("Order",orderSchema);
  module.exports =ORDER;
-
-
-
-
-
-
-
-// {
-//     "shirts": {
-//         "quantity": 1,
-//         "washing":"Yes",
-//         "ironing":"No",
-//         "drycleaning":"yes",
-//         "chemicalcleaning":"yes"
-//     },
-//     "tshirts": {
-//           "quantity": 1,
-//         "washing":"Yes",
-//         "ironing":"No",
-//         "drycleaning":"yes",
-//         "chemicalcleaning":"yes"
-//     },
-//     "trousers": {
-//           "quantity": 1,
-//         "washing":"Yes",
-//         "ironing":"No",
-//         "drycleaning":"yes",
-//         "chemicalcleaning":"yes"
-//     },
-//     "boxers": {
-//           "quantity": 1,
-//         "washing":"Yes",
-//         "ironing":"No",
-//         "drycleaning":"yes",
-//         "chemicalcleaning":"yes"
-//     },
-//     "joggers": {
-//          "quantity": 1,
-//         "washing":"Yes",
-//         "ironing":"No",
-//         "drycleaning":"yes",
-//         "chemicalcleaning":"yes"
-//     }
-   
-// }

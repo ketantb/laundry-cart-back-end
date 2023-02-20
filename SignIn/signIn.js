@@ -1,13 +1,15 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const router = express.Router()
+const jwt = require('jsonwebtoken')
 const SIGNIN = mongoose.model('SIGNIN')
 const REGISTER = mongoose.model('REGISTER')
-const jwt = require('jsonwebtoken')
+
 const secretKey = "secretkey"
 
 router.post('/signin', async (req, res) => {
     try {
+        let token;
         const { emailOrMobile, password } = req.body
         const userEmail = await REGISTER.findOne({ Email: emailOrMobile })
         if (!userEmail || emailOrMobile != userEmail.Email) {
@@ -24,11 +26,17 @@ router.post('/signin', async (req, res) => {
             console.log("Invalid Password")
             res.status(400).send("Invalid Password")
         }
-        else {
-            jwt.sign({ userEmail }, secretKey, { expiresIn: '300s' }, (err, token) => {
-                res.status(200).json({ token })
-                console.log(token)
-            })
+        if(userEmail) {
+            token = await userEmail.getAuthToken()
+
+            return res.cookie("accesstoken", token, {
+                    httpOnly: true,
+                })
+                .status(200)
+                .json({ message: "Logged in successfully" ,token});
+
+          
+
         }
     }
     catch (e) {

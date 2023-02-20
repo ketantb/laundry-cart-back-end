@@ -1,5 +1,6 @@
 const mongoose=require('mongoose')
 require('dotenv').config();
+//const mongoURL=process.env.mongoURL
 const key = process.env.key
 mongoose.set('strictQuery', true)
 mongoose.connect(key)
