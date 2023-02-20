@@ -15,7 +15,7 @@ app.use(bodyParser.json());
   app.use(cors());
 
 
-require('./connectionDB.js')
+require('./connectionDB')
 require('./Order/orderModel/ordermodel')
 require('./Register/RegisterModel/registerModel')
 require('./SignIn/signInModel/signInModel')
@@ -26,6 +26,10 @@ app.use(require('./SignIn/signIn'))
 app.use(require('./Order/order'))
 app.use("/createorder", ordersroute);
 
+
+app.get('/', (req, res) => {
+  res.status(200).send("Welcome to laundary cart")
+})
 
 app.get('/hii', (req, res) => {
 
