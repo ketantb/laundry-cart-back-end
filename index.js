@@ -7,13 +7,7 @@ const ordersroute = require("./Order/order");
 const cookieParser = require("cookie-parser");
 app.use(express.json());
 app.use(bodyParser.json());
-// const corsOptions ={
-//     origin:'*', 
-//     credentials:true,            //access-control-allow-credentials:true
-//     optionSuccessStatus:200
-//   }
-  app.use(cors());
-
+app.use(cors());
 
 require('./connectiondb.js')
 require('./Order/orderModel/ordermodel')
@@ -32,9 +26,7 @@ app.get('/', (req, res) => {
 })
 
 app.get('/hii', (req, res) => {
-
   res.cookie('name', 'geeksforgeeks')
-  
   res.send(req.rootUser)
 })
 
